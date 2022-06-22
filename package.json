@@ -1,0 +1,15 @@
+{
+  "name": "cardano-cryptoblog",
+  "version": "1.0.0",
+  "description": "Blog for cardano ecosystem cryptocurrency",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1"
+  }
+}
