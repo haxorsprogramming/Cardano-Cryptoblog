@@ -11,11 +11,24 @@ app.use(express.static('public'));
 app.set('views', './bind');
 app.set('view engine', 'ejs');
 
+// halaman home 
 app.get('/', (req, res) => {
-  let dr = { judul: 'Cardano In Indonesia' }
+  let dr = { judul: 'Ada Indonesia - ADA Info Community' }
   res.render('home', dr);
-})
+});
+
+// halaman blog 
+app.get('/:slug', (req, res) => {
+  let slug = req.params.slug;
+  res.render('blog/single-post');
+});
+
+// halaman kategori 
+app.get('/category/:slug', (req, res) => {
+  let slug = req.params.slug;
+  res.render('blog/single-post');
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
-})
+});
