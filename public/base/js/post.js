@@ -8,18 +8,23 @@ axios.get("http://127.0.0.1:7001/api/post/" + slug).then(function (res) {
   postData.isi = res.data.isi;
 });
 
-class Header extends React.Component {
-  constructor() {
-    super();
-    // membuat objek state
-    this.state = {
-      title: "Belajar Reactjs",
-      subTitle: "Panduan step-by-step Reactjs untuk pemula",
-    };
+setTimeout(function(){
+  class Header extends React.Component {
+    constructor() {
+      super();
+      // membuat objek state
+      this.state = {
+        title: "Belajar Reactjs",
+        subTitle: postData.isi,
+      };
+    }
+  
+    render() {
+      return <div>
+        <p style={{ textAlign:"justify" }}>{this.state.subTitle}</p>
+      </div>;
+    }
   }
+  ReactDOM.render(<Header />, document.getElementById("app"));
+}, 400);
 
-  render() {
-    return <div></div>;
-  }
-}
-ReactDOM.render(<Header />, document.getElementById("app"));
