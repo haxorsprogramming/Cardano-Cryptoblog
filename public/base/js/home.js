@@ -1,4 +1,3 @@
-
 var myArray = [];
 
 axios.get("http://127.0.0.1:7001/api/post/data/get/all").then(function (res) {
@@ -7,11 +6,12 @@ axios.get("http://127.0.0.1:7001/api/post/data/get/all").then(function (res) {
     let dataPost = res.data.dataPost;
     dataPost.forEach(renderPost);
     function renderPost(item, index){
-        let dataPostArray = {'judul':'' , 'img':''}
+        let dataPostArray = {}
         dataPostArray.judul = dataPost[index].judul;
         dataPostArray.img = dataPost[index].img
         dataPostArray.short_deks = dataPost[index].short_deks;
         dataPostArray.slug = dataPost[index].slug;
+        dataPostArray.writer = dataPost[index].writer;
         myArray.push(dataPostArray);
     }
     console.log(myArray);
@@ -52,7 +52,7 @@ setTimeout(function(){
                       class="gdlr-core-blog-title gdlr-core-skin-title"
                       id="h3_2207_3"
                     >
-                      <a href="javascript:void(0)">{name.judul}</a>
+                      <a href={name.slug}>{name.judul}</a>
                     </h3>
                     <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider">
                       <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author">

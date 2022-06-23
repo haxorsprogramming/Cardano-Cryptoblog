@@ -20,7 +20,8 @@ app.get('/', (req, res) => {
 // halaman blog 
 app.get('/:slug', (req, res) => {
   let slug = req.params.slug;
-  res.render('blog/single-post');
+  let dr = {'slug':slug, judul: 'Ada Indonesia - ADA Info Community'}
+  res.render('blog/single-post', dr);
 });
 
 // halaman kategori 
