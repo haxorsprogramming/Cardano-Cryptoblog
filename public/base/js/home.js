@@ -1,9 +1,9 @@
 var myArray = [];
 
-axios.get("http://127.0.0.1:7001/api/post/data/get/all").then(function (res) {
+axios.get(apiserver + "post/data/all").then(function (res) {
     console.log(res.data);
     
-    let dataPost = res.data.dataPost;
+    let dataPost = res.data.post;
     dataPost.forEach(renderPost);
     function renderPost(item, index){
         let dataPostArray = {}

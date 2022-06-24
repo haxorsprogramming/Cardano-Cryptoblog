@@ -2,10 +2,10 @@ var postData = {};
 
 console.log(slug);
 
-axios.get("http://127.0.0.1:7001/api/post/" + slug).then(function (res) {
+axios.get(apiserver+"post/"+slug+"/detail").then(function (res) {
   console.log(res.data);
-  document.querySelector("#capTitle").innerHTML = res.data.judul;
-  postData.isi = res.data.isi;
+  document.querySelector("#capTitle").innerHTML = res.data.dataPost[0].judul;
+  postData.isi = res.data.dataPost[0].long_deks;
 });
 
 setTimeout(function(){
