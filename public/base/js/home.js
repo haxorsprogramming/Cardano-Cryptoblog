@@ -137,7 +137,7 @@ setTimeout(function(){
       
       ReactDOM.render(post, document.getElementById("app"));
 
-}, 400);
+}, 1000);
 
 
 

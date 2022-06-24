@@ -26,5 +26,5 @@ setTimeout(function(){
     }
   }
   ReactDOM.render(<Header />, document.getElementById("app"));
-}, 400);
+}, 1000);
 
