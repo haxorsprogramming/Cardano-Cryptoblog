@@ -6,6 +6,8 @@ axios.get(apiserver+"post/"+slug+"/detail").then(function (res) {
   console.log(res.data);
   document.querySelector("#capTitle").innerHTML = res.data.dataPost[0].judul;
   postData.isi = res.data.dataPost[0].long_deks;
+  document.querySelector("#imgHero").setAttribute("src", res.data.dataPost[0].img_feature);
+  document.querySelector("#txtPenulis").innerHTML = res.data.dataPost[0].writer;
 });
 
 setTimeout(function(){

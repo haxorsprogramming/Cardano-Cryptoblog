@@ -8,7 +8,7 @@ axios.get(apiserver + "post/data/all").then(function (res) {
     function renderPost(item, index){
         let dataPostArray = {}
         dataPostArray.judul = dataPost[index].judul;
-        dataPostArray.img = dataPost[index].img
+        dataPostArray.img = dataPost[index].img_feature
         dataPostArray.short_deks = dataPost[index].short_deks;
         dataPostArray.slug = dataPost[index].slug;
         dataPostArray.writer = dataPost[index].writer;
@@ -28,7 +28,7 @@ setTimeout(function(){
                 <div class="gdlr-core-blog-thumbnail gdlr-core-media-image  gdlr-core-opacity-on-hover gdlr-core-zoom-on-hover">
                   <a href="javascript:void(0)">
                     <img
-                      src="https://source.unsplash.com/1000x486/?computer"
+                      src={name.img}
                       width="1000"
                       height="486"
                       title="pexels-photo-871053"
