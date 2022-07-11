@@ -20,6 +20,7 @@ var dataPostAll;
 var dataKategoriAll;
 var dataKategoriPost;
 var dataRecentPost;
+var dataPostDetail;
 
 app.get("/", (req, res) => {
   getDataPostAll();
@@ -32,30 +33,31 @@ app.get("/", (req, res) => {
     dataKategori : dataKategoriAll,
     dataRecentPost : dataRecentPost
   };
+  
   res.render("home", dr);
 });
 
 app.get("/:slug", (req, res) => {
   let slug = req.params.slug;
-  let dr = {
-    slug: slug,
-    judul: "Rumah ADA - ADA Info Community",
-    api: API_SERVER,
-  };
-  res.render("blog/single-post", dr);
+  axios.get(API_SERVER+"post/"+slug+"/detail").then(resp => {
+    let dr = {
+      slug: slug,
+      judul: "Rumah ADA - ADA Info Community",
+      api: API_SERVER,
+      dataPost : resp.data.dataPost
+    };
+    res.render("blog/single-post", dr);
+  });
 });
 
-app.get("/category/:slug", (req, res) => {
-  let slug = req.params.slug;
-  getDataKategoriPost(slug);
-  console.log("Haloo");
-  // res.render("blog/kategori-post");
-});
+// app.get("/category/:slug", (req, res) => {
+//   let slug = req.params.slug;
+//   getDataKategoriPost(slug);
+// });
 
 async function getDataKategoriPost(slug)
 {
   let res = await axios.get(API_SERVER+"kategori/"+slug);
-
 }
 
 async function getRecentPost()
