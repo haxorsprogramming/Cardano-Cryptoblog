@@ -16,19 +16,25 @@ app.set("view engine", "ejs");
 
 var API_SERVER = process.env.API_SERVER;
 
-// halaman home
+var dataPostAll;
+var dataKategoriAll;
+var dataKategoriPost;
+var dataRecentPost;
+
 app.get("/", (req, res) => {
-  axios.get("http://127.0.0.1:7001/post/data/all").then((resp) => {
-    let dataPost = resp.data.post;
-    axios.get("http://127.0.0.1:7001/kategori/data/all").then((rd) => {
-      let dataKategori = rd.data.kategori;
-      let dr = { judul: "Rumah ADA - ADA Info Community", api: API_SERVER, dataPost : dataPost, dataKategori : dataKategori};
-      res.render("home", dr);
-    });
-  });
+  getDataPostAll();
+  getDataKategoriAll();
+  getRecentPost();
+  let dr = { 
+    judul: "Rumah ADA - ADA Info Community", 
+    api: API_SERVER, 
+    dataPost : dataPostAll, 
+    dataKategori : dataKategoriAll,
+    dataRecentPost : dataRecentPost
+  };
+  res.render("home", dr);
 });
 
-// halaman blog
 app.get("/:slug", (req, res) => {
   let slug = req.params.slug;
   let dr = {
@@ -39,11 +45,35 @@ app.get("/:slug", (req, res) => {
   res.render("blog/single-post", dr);
 });
 
-// halaman kategori
 app.get("/category/:slug", (req, res) => {
   let slug = req.params.slug;
-  res.render("blog/single-post");
+  getDataKategoriPost(slug);
+  console.log("Haloo");
+  // res.render("blog/kategori-post");
 });
+
+async function getDataKategoriPost(slug)
+{
+  let res = await axios.get(API_SERVER+"kategori/"+slug);
+
+}
+
+async function getRecentPost()
+{
+  let res = await axios.get(API_SERVER+"post/recent");
+  dataRecentPost = res.data.dataPost;
+}
+
+async function getDataKategoriAll()
+{
+  let res = await axios.get(API_SERVER+"kategori/data/all");
+  dataKategoriAll = res.data.kategori;
+}
+
+async function getDataPostAll() {
+  let res = await axios.get(API_SERVER+"post/data/all");
+  dataPostAll = res.data.post;
+}
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
